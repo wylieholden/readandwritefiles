@@ -2,26 +2,28 @@
 import csv
 
 CSVFILE = "sales.csv"
+NEWFILE = "salesreport.csv"
 
+# open
+infile = open(CSVFILE, "r", newline="")
+outfile = open(NEWFILE, "w", newline="")
 
-def main():
-    # open
-    infile = open(CSVFILE, "r", newline="")
-    reader = csv.reader(infile)
-    next(reader)
+reader = csv.reader(infile)
+writer = csv.writer(outfile, delimiter=",")
+next(reader)
 
-    # loop
-    for row in reader:
-        cust_id = row[0]
-        if cust_id == cust_id:
-            sales = row[3] + row[3]
-        else:
-            sales = 88
+# loop
+customer_id = "250"
+cust_total = 0
 
-        # display
-        print(sales)
+for i in reader:
+    if customer_id != i[0]:
+        outfile.write(customer_id + "\t" + str("%.2f" % cust_total) + "\n")
+        customer_id = i[0]
+        cust_total = 0
+    total = float(i[3]) + float(i[4]) + float(i[5])
+    cust_total += total
 
-    infile.close()
-
-
-main()
+# close
+infile.close()
+outfile.close()
