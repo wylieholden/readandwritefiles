@@ -24,6 +24,7 @@ for i in reader:
     total = float(i[3]) + float(i[4]) + float(i[5])
     cust_total += total
 
+outfile.write(customer_id + "\t" + str("%.2f" % cust_total) + "\n")
 # close
 infile.close()
 outfile.close()
